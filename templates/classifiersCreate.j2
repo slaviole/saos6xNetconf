@@ -1,13 +1,13 @@
 <config>  
   <classifiers>
     <classifier operation="replace">
-      <name>clsfr_v{{evpl.stag}}</name>
+      <name>clsfr_v{{stag}}</name>
       <filter-entry>
         <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
         <logical-not>false</logical-not>
         <vtags>
           <tag>1</tag>
-          <vlan-id>{{evpl.stag}}</vlan-id>
+          <vlan-id>{{stag}}</vlan-id>
         </vtags>
       </filter-entry>
     </classifier>

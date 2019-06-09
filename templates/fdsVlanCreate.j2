@@ -1,9 +1,9 @@
 <config>  
   <fds xmlns="urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fd">
    <fd operation="replace">
-      <name>vlan-VLAN#{{evpl.stag}}</name>
+      <name>vlan-VLAN#{{stag}}</name>
       <mode>vlan</mode>
-      <vlan-id>{{evpl.stag}}</vlan-id>
+      <vlan-id>{{stag}}</vlan-id>
       <mac-learning>enabled</mac-learning>
       <pfg-profile>L2-Profile-univ</pfg-profile>
       <ciena-fd xmlns="http://www.ciena.com/ns/yang/ciena-fd">

@@ -1,7 +1,12 @@
 ---
 
-- name: Create FD Flow Domain
+- name: Create MEF EVPL Service
   hosts: "3903x_4"
+  vars:
+      stag: 200
+      ctag: 20
+      uniPort: 2
+      nniPort: 3
   connection: netconf
   gather_facts: false
   tasks:
