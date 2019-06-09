@@ -1,0 +1,112 @@
+760a761,771
+>     <classifier>
+>       <name>clsfr_v20</name>
+>       <filter-entry>
+>         <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+>         <logical-not>false</logical-not>
+>         <vtags>
+>           <tag>1</tag>
+>           <vlan-id>20</vlan-id>
+>         </vtags>
+>       </filter-entry>
+>     </classifier>
+1412a1424,1426
+>     <fdb>
+>       <name>vs-VS200</name>
+>     </fdb>
+1453a1468,1483
+>     <fd>
+>       <name>vs-VS200</name>
+>       <mode>vpls</mode>
+>       <mac-learning>enabled</mac-learning>
+>       <pfg-profile>L2-Profile-univ</pfg-profile>
+>       <ciena-fd xmlns="http://www.ciena.com/ns/yang/ciena-fd">
+>         <tagged-pvst-l2pt>disabled</tagged-pvst-l2pt>
+>         <pfg-admin-state>disabled</pfg-admin-state>
+>         <egress-tpid>0x8100</egress-tpid>
+>       </ciena-fd>
+>       <ciena-fd-sds xmlns="http://www.ciena.com/ns/yang/ciena-fd-sds">
+>         <decap-cos-policy>leave</decap-cos-policy>
+>         <decap-fixed-dot1dpri>2</decap-fixed-dot1dpri>
+>         <encap-fixed-dot1dpri>2</encap-fixed-dot1dpri>
+>       </ciena-fd-sds>
+>     </fd>
+1503,1520d1532
+<       <name>vlan-Default-2</name>
+<       <fd-name>vlan-Default</fd-name>
+<       <logical-port>2</logical-port>
+<       <uni/>
+<       <ingress-l2-transform>
+<         <ingress-name>untagged</ingress-name>
+<         <untagged-vid>1</untagged-vid>
+<       </ingress-l2-transform>
+<       <egress-l2-transform>
+<         <egress-name>tagged</egress-name>
+<         <vlan-stack>
+<           <tag>1</tag>
+<           <pop-type/>
+<         </vlan-stack>
+<       </egress-l2-transform>
+<       <classifier-list>clsfr_v1</classifier-list>
+<     </fp>
+<     <fp>
+1547,1553d1558
+<       <name>vlan-Mgmt-2</name>
+<       <fd-name>vlan-Mgmt</fd-name>
+<       <logical-port>2</logical-port>
+<       <uni/>
+<       <classifier-list>clsfr_v127</classifier-list>
+<     </fp>
+<     <fp>
+1559a1565,1583
+>     <fp>
+>       <name>vs-VS200-vc-VC200</name>
+>       <fd-name>vs-VS200</fd-name>
+>       <svlan>200</svlan>
+>     </fp>
+>     <fp>
+>       <name>vs-VS200-2</name>
+>       <fd-name>vs-VS200</fd-name>
+>       <logical-port>2</logical-port>
+>       <uni/>
+>       <classifier-list>clsfr_v20</classifier-list>
+>       <ciena-fp-sds xmlns="http://www.ciena.com/ns/yang/ciena-fp">
+>         <per-classifier-settings>
+>           <classifier>clsfr_v20</classifier>
+>           <encap-cos-policy>fd-inherit</encap-cos-policy>
+>           <encap-fixed-dot1dpri>2</encap-fixed-dot1dpri>
+>         </per-classifier-settings>
+>       </ciena-fp-sds>
+>     </fp>
+3074c3098
+<       <capability>urn:yumaworks:params:xml:ns:netconf:config-id?id=423</capability>
+---
+>       <capability>urn:yumaworks:params:xml:ns:netconf:config-id?id=432</capability>
+3223c3247
+<         <last-modified xmlns="http://netconfcentral.org/ns/yuma-time-filter">2000-01-13T22:16:15Z</last-modified>
+---
+>         <last-modified xmlns="http://netconfcentral.org/ns/yuma-time-filter">2000-01-14T01:49:35Z</last-modified>
+4631c4655
+<         <session-id>177</session-id>
+---
+>         <session-id>192</session-id>
+4635c4659
+<         <login-time>2000-01-14T01:41:37Z</login-time>
+---
+>         <login-time>2000-01-14T01:49:51Z</login-time>
+4645c4669
+<       <in-sessions>176</in-sessions>
+---
+>       <in-sessions>191</in-sessions>
+4647c4671
+<       <in-rpcs>378</in-rpcs>
+---
+>       <in-rpcs>396</in-rpcs>
+7343c7367
+<     <sysCurrentDateTime>2000-01-14T01:41:45Z</sysCurrentDateTime>
+---
+>     <sysCurrentDateTime>2000-01-14T01:49:59Z</sysCurrentDateTime>
+7522c7546
+<       <current-datetime>2000-01-14T01:41:45+00:00</current-datetime>
+---
+>       <current-datetime>2000-01-14T01:49:59+00:00</current-datetime>

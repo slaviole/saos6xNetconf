@@ -1,0 +1,11 @@
+<config>  
+  <fps xmlns="urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp">
+   <fp>
+      <name>vlan-VLAN#{{evpl.stag}}-{{evpl.nniPort}}</name>
+      <fd-name>vlan-VLAN#{{evpl.stag}}</fd-name>
+      <logical-port>{{evpl.nniPort}}</logical-port>
+      <uni/>
+      <classifier-list>clsfr_v{{evpl.stag}}</classifier-list>
+    </fp>
+  </fps>
+</config>

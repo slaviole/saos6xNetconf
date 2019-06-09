@@ -1,0 +1,29 @@
+---
+
+- name: Create FD Flow Domain
+  hosts: "3903x_4"
+  connection: netconf
+  gather_facts: false
+  tasks:
+      - name: "TASK1: Create Flow Domain"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fdsVlanCreate.j2') }}"
+      - name: "Task2: Create Classifier"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/classifiersCreate.j2') }}"
+      - name: "Task3: Create Flow Point"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fpsCreate.j2') }}"
+      - name: "Task4: Create Flow Domain(VPLS)/VS/VC"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fdsVplsCreate.j2') }}"
+      - name: "Task5: Create VPLS/UNI Classifier"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/classifiersVplsCreate.j2') }}"
+      - name: "Task6: Connect VS to VC"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fpsVplsCreate.j2') }}"
+      - name: "Task7: FP - Connect VS to Uni"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fpsVplsCreateUni.j2') }}"
+

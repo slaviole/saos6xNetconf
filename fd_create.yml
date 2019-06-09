@@ -1,0 +1,17 @@
+---
+
+- name: Create FD Flow Domain
+  hosts: "3903x_4"
+  connection: netconf
+  gather_facts: false
+  tasks:
+      - name: "TASK1: Create Flow Domain"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fds_vlan.j2') }}"
+      - name: "Task2: Create Classifier"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/classifiers.j2') }}"
+      - name: "Task3: Create Flow Point"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/fp_create.j2') }}"
+

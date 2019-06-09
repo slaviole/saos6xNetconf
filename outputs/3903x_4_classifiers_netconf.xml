@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx">
+  <classifiers xmlns="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">
+    <classifier>
+      <name>clsfr_ut_xcld</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <untagged-exclude-priority-tagged>false</untagged-exclude-priority-tagged>
+      </filter-entry>
+    </classifier>
+    <classifier>
+      <name>clsfr_l2_xcld</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <l2cp-exclude-priority-tagged>false</l2cp-exclude-priority-tagged>
+      </filter-entry>
+    </classifier>
+    <classifier>
+      <name>clsfr_ut</name>
+    </classifier>
+    <classifier>
+      <name>clsfr_vany</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <vtags>
+          <tag>1</tag>
+        </vtags>
+      </filter-entry>
+    </classifier>
+    <classifier>
+      <name>clsfr_v127</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <vtags>
+          <tag>1</tag>
+          <vlan-id>127</vlan-id>
+        </vtags>
+      </filter-entry>
+    </classifier>
+    <classifier>
+      <name>clsfr_v1</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <vtags>
+          <tag>1</tag>
+          <vlan-id>1</vlan-id>
+        </vtags>
+      </filter-entry>
+    </classifier>
+    <classifier>
+      <name>clsfr_v200</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <vtags>
+          <tag>1</tag>
+          <vlan-id>200</vlan-id>
+        </vtags>
+      </filter-entry>
+    </classifier>
+  </classifiers>
+</data>

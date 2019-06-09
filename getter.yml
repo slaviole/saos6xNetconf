@@ -1,0 +1,15 @@
+---
+
+- name: Create VC Flow Domain
+  hosts: "3903x_4"
+  connection: netconf
+  gather_facts: false
+  tasks:
+      - name: Get filtered output from switch
+        netconf_get:
+          filter: <fps></fps>
+          display: json
+        register: result
+      - name: Print output 
+        debug:
+          var: result.output.data.fps.fp

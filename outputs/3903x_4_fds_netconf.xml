@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx">
+  <fds xmlns="urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fd">
+    <fd>
+      <name>vlan-Default</name>
+      <mode>vlan</mode>
+      <vlan-id>1</vlan-id>
+      <mac-learning>enabled</mac-learning>
+      <pfg-profile>L2-Profile-univ</pfg-profile>
+      <ciena-fd xmlns="http://www.ciena.com/ns/yang/ciena-fd">
+        <tagged-pvst-l2pt>disabled</tagged-pvst-l2pt>
+        <pfg-admin-state>disabled</pfg-admin-state>
+        <egress-tpid>0x8100</egress-tpid>
+      </ciena-fd>
+      <ciena-fd-sds xmlns="http://www.ciena.com/ns/yang/ciena-fd-sds"/>
+    </fd>
+    <fd>
+      <name>vlan-Mgmt</name>
+      <mode>vlan</mode>
+      <vlan-id>127</vlan-id>
+      <mac-learning>enabled</mac-learning>
+      <pfg-profile>L2-Profile-mgmt</pfg-profile>
+      <ciena-fd xmlns="http://www.ciena.com/ns/yang/ciena-fd">
+        <tagged-pvst-l2pt>disabled</tagged-pvst-l2pt>
+        <pfg-admin-state>enabled</pfg-admin-state>
+        <egress-tpid>0x8100</egress-tpid>
+      </ciena-fd>
+      <ciena-fd-sds xmlns="http://www.ciena.com/ns/yang/ciena-fd-sds"/>
+    </fd>
+    <fd>
+      <name>vlan-VLAN#200</name>
+      <mode>vlan</mode>
+      <vlan-id>200</vlan-id>
+      <mac-learning>enabled</mac-learning>
+      <pfg-profile>L2-Profile-univ</pfg-profile>
+      <ciena-fd xmlns="http://www.ciena.com/ns/yang/ciena-fd">
+        <tagged-pvst-l2pt>disabled</tagged-pvst-l2pt>
+        <pfg-admin-state>disabled</pfg-admin-state>
+        <egress-tpid>0x8100</egress-tpid>
+      </ciena-fd>
+      <ciena-fd-sds xmlns="http://www.ciena.com/ns/yang/ciena-fd-sds"/>
+    </fd>
+  </fds>
+</data>
