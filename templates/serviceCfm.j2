@@ -1,0 +1,35 @@
+<config>  
+  <maintenance-domain xmlns="http://metroethernetforum.org/ns/yang/mef-cfm">
+      <id>md4</id>
+      <name>md4</name>
+      <md-level>4</md-level>
+      <maintenance-association>
+          <id>CFM_VS{{stag}}</id>
+          <name-type>character-string</name-type>
+          <name>CFM_VS{{stag}}</name>
+          <component-list>
+              <component-id>1</component-id>
+              <mhf-creation>none</mhf-creation>
+              <id-permission>none</id-permission>
+              <fd-name xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">vs-VS{{stag}}</fd-name>
+          </component-list>
+          <ccm-interval>1s</ccm-interval>
+          <maintenance-association-end-point>
+              <mep-identifier>{{mepid}}</mep-identifier>
+              <interface>{{uniPort}}</interface>
+              <direction>up</direction>
+              <primary-vid>4095</primary-vid>
+              <administrative-state>true</administrative-state>
+              <ccm-ltm-priority>7</ccm-ltm-priority>
+              <continuity-check>
+                  <cci-enabled>true</cci-enabled>
+                  <lowest-fault-priority-defect>remote-invalid-ccm</lowest-fault-priority-defect>
+                  <fng-alarm-time>300</fng-alarm-time>
+                  <fng-reset-time>300</fng-reset-time>
+              </continuity-check>
+              <interface-type xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">ettp</interface-type>
+          </maintenance-association-end-point>
+          <admin-state xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">enable</admin-state>
+      </maintenance-association>
+  </maintenance-domain>    
+</config>

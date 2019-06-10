@@ -582,11 +582,11 @@
     <iqos-bw-calculation-mode xmlns:ciena-bw-calculation-mode="http://www.ciena.com/ns/yang/ciena-bw-calculation-mode">ciena-bw-calculation-mode:transport</iqos-bw-calculation-mode>
   </bw-calculation-mode>
   <cfm-global-config xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">
-    <admin-state>disable</admin-state>
+    <admin-state>enable</admin-state>
     <dot1ad-strict-enforcement>on</dot1ad-strict-enforcement>
     <l2-loop-detection>off</l2-loop-detection>
     <mip-level-enforcement>on</mip-level-enforcement>
-    <automatic-meps>on</automatic-meps>
+    <automatic-meps>off</automatic-meps>
     <dmm-default-count>100</dmm-default-count>
     <dmm-default-interval>100ms</dmm-default-interval>
     <dmm-default-timeout>5000</dmm-default-timeout>
@@ -726,17 +726,6 @@
       </filter-entry>
     </classifier>
     <classifier>
-      <name>clsfr_v127</name>
-      <filter-entry>
-        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
-        <logical-not>false</logical-not>
-        <vtags>
-          <tag>1</tag>
-          <vlan-id>127</vlan-id>
-        </vtags>
-      </filter-entry>
-    </classifier>
-    <classifier>
       <name>clsfr_v1</name>
       <filter-entry>
         <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
@@ -744,6 +733,17 @@
         <vtags>
           <tag>1</tag>
           <vlan-id>1</vlan-id>
+        </vtags>
+      </filter-entry>
+    </classifier>
+    <classifier>
+      <name>clsfr_v127</name>
+      <filter-entry>
+        <filter-parameter xmlns:classifier="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier">classifier:vtag-stack</filter-parameter>
+        <logical-not>false</logical-not>
+        <vtags>
+          <tag>1</tag>
+          <vlan-id>127</vlan-id>
         </vtags>
       </filter-entry>
     </classifier>
@@ -1421,9 +1421,6 @@
     <fdb>
       <name>vlan-Mgmt</name>
     </fdb>
-    <fdb>
-      <name>vs-VS200</name>
-    </fdb>
   </fdbs>
   <fds xmlns="urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fd">
     <fd>
@@ -1467,13 +1464,13 @@
     </fd>
     <fd>
       <name>vs-VS200</name>
+      <description/>
       <mode>vpls</mode>
       <mac-learning>enabled</mac-learning>
       <pfg-profile>L2-Profile-univ</pfg-profile>
       <ciena-fd xmlns="http://www.ciena.com/ns/yang/ciena-fd">
         <tagged-pvst-l2pt>disabled</tagged-pvst-l2pt>
         <pfg-admin-state>disabled</pfg-admin-state>
-        <egress-tpid>0x8100</egress-tpid>
       </ciena-fd>
       <ciena-fd-sds xmlns="http://www.ciena.com/ns/yang/ciena-fd-sds">
         <decap-cos-policy>leave</decap-cos-policy>
@@ -1504,6 +1501,51 @@
   </flood-containment-profiles>
   <fps xmlns="urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp">
     <fp>
+      <name>vlan-Default-1</name>
+      <fd-name>vlan-Default</fd-name>
+      <logical-port>1</logical-port>
+      <uni/>
+      <classifier-list>clsfr_v1</classifier-list>
+    </fp>
+    <fp>
+      <name>vlan-Default-2</name>
+      <fd-name>vlan-Default</fd-name>
+      <logical-port>2</logical-port>
+      <uni/>
+      <ingress-l2-transform>
+        <ingress-name>untagged</ingress-name>
+        <untagged-vid>1</untagged-vid>
+      </ingress-l2-transform>
+      <egress-l2-transform>
+        <egress-name>tagged</egress-name>
+        <vlan-stack>
+          <tag>1</tag>
+          <pop-type/>
+        </vlan-stack>
+      </egress-l2-transform>
+      <classifier-list>clsfr_v1</classifier-list>
+      <classifier-list>clsfr_ut</classifier-list>
+    </fp>
+    <fp>
+      <name>vlan-Default-3</name>
+      <fd-name>vlan-Default</fd-name>
+      <logical-port>3</logical-port>
+      <uni/>
+      <ingress-l2-transform>
+        <ingress-name>untagged</ingress-name>
+        <untagged-vid>1</untagged-vid>
+      </ingress-l2-transform>
+      <egress-l2-transform>
+        <egress-name>tagged</egress-name>
+        <vlan-stack>
+          <tag>1</tag>
+          <pop-type/>
+        </vlan-stack>
+      </egress-l2-transform>
+      <classifier-list>clsfr_v1</classifier-list>
+      <classifier-list>clsfr_ut</classifier-list>
+    </fp>
+    <fp>
       <name>vlan-Mgmt-1</name>
       <fd-name>vlan-Mgmt</fd-name>
       <logical-port>1</logical-port>
@@ -1530,32 +1572,6 @@
       <classifier-list>clsfr_v127</classifier-list>
     </fp>
     <fp>
-      <name>vlan-Default-1</name>
-      <fd-name>vlan-Default</fd-name>
-      <logical-port>1</logical-port>
-      <uni/>
-      <classifier-list>clsfr_v1</classifier-list>
-    </fp>
-    <fp>
-      <name>vlan-Default-3</name>
-      <fd-name>vlan-Default</fd-name>
-      <logical-port>3</logical-port>
-      <uni/>
-      <ingress-l2-transform>
-        <ingress-name>untagged</ingress-name>
-        <untagged-vid>1</untagged-vid>
-      </ingress-l2-transform>
-      <egress-l2-transform>
-        <egress-name>tagged</egress-name>
-        <vlan-stack>
-          <tag>1</tag>
-          <pop-type/>
-        </vlan-stack>
-      </egress-l2-transform>
-      <classifier-list>clsfr_v1</classifier-list>
-      <classifier-list>clsfr_ut</classifier-list>
-    </fp>
-    <fp>
       <name>vlan-VLAN#200-3</name>
       <fd-name>vlan-VLAN#200</fd-name>
       <logical-port>3</logical-port>
@@ -1573,13 +1589,6 @@
       <logical-port>2</logical-port>
       <uni/>
       <classifier-list>clsfr_v20</classifier-list>
-      <ciena-fp-sds xmlns="http://www.ciena.com/ns/yang/ciena-fp">
-        <per-classifier-settings>
-          <classifier>clsfr_v20</classifier>
-          <encap-cos-policy>fd-inherit</encap-cos-policy>
-          <encap-fixed-dot1dpri>2</encap-fixed-dot1dpri>
-        </per-classifier-settings>
-      </ciena-fp-sds>
     </fp>
   </fps>
   <frame-to-cos-maps xmlns="urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-frame-to-cos-map">
@@ -2992,6 +3001,47 @@
     <md-level>4</md-level>
     <mhf-creation>none</mhf-creation>
     <id-permission>none</id-permission>
+    <maintenance-association>
+      <id>CFM_VS200</id>
+      <name-type>character-string</name-type>
+      <name>CFM_VS200</name>
+      <component-list>
+        <component-id>1</component-id>
+        <mhf-creation>none</mhf-creation>
+        <id-permission>none</id-permission>
+        <fd-name xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">vs-VS200</fd-name>
+      </component-list>
+      <ccm-interval>1s</ccm-interval>
+      <maintenance-association-end-point>
+        <mep-identifier>2</mep-identifier>
+        <interface>2</interface>
+        <direction>up</direction>
+        <primary-vid>4095</primary-vid>
+        <administrative-state>true</administrative-state>
+        <ccm-ltm-priority>7</ccm-ltm-priority>
+        <continuity-check>
+          <cci-enabled>true</cci-enabled>
+          <lowest-fault-priority-defect>remote-invalid-ccm</lowest-fault-priority-defect>
+          <fng-alarm-time>300</fng-alarm-time>
+          <fng-reset-time>300</fng-reset-time>
+        </continuity-check>
+        <interface-type xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">ettp</interface-type>
+      </maintenance-association-end-point>
+      <accelerate xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">false</accelerate>
+      <alarm-priority xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">3</alarm-priority>
+      <alarm-time xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">3000</alarm-time>
+      <csf-interval xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">1s</csf-interval>
+      <csf-loss-num xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">3</csf-loss-num>
+      <csf-dci-num xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">3</csf-dci-num>
+      <ccm-loss-bucket-size xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">15</ccm-loss-bucket-size>
+      <ccm-loss-num xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">3</ccm-loss-num>
+      <ccm-loss-stats xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">disable</ccm-loss-stats>
+      <reset-time xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">3000</reset-time>
+      <remote-mep-aging-time xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">0</remote-mep-aging-time>
+      <remote-mep-discovery xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">enable</remote-mep-discovery>
+      <sender-id-type xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">chassis</sender-id-type>
+      <admin-state xmlns="http://www.ciena.com/ns/yang/ciena-cfm-sds">enable</admin-state>
+    </maintenance-association>
   </maintenance-domain>
   <maintenance-domain xmlns="http://metroethernetforum.org/ns/yang/mef-cfm">
     <id>md5</id>
@@ -3095,7 +3145,7 @@
       <capability>urn:ietf:params:netconf:capability:xpath:1.0</capability>
       <capability>urn:ietf:params:netconf:capability:partial-lock:1.0</capability>
       <capability>urn:ietf:params:netconf:capability:with-defaults:1.0?basic-mode=report-all&amp;also-supported=trim</capability>
-      <capability>urn:yumaworks:params:xml:ns:netconf:config-id?id=432</capability>
+      <capability>urn:yumaworks:params:xml:ns:netconf:config-id?id=437</capability>
       <capability>urn:ietf:params:xml:ns:netconf:base:1.0?module=ietf-netconf&amp;revision=2011-06-01&amp;features=writable-running,rollback-on-error,startup,xpath</capability>
       <capability>http://www.ciena.com/ns/yang/ciena-alarm?module=ciena-alarm&amp;revision=2017-08-25&amp;features=external-alarms</capability>
       <capability>http://www.ciena.com/ns/yang/ciena-bw-calculation-mode?module=ciena-bw-calculation-mode&amp;revision=2016-12-08</capability>
@@ -3244,11 +3294,11 @@
     <datastores>
       <datastore>
         <name>running</name>
-        <last-modified xmlns="http://netconfcentral.org/ns/yuma-time-filter">2000-01-14T01:49:35Z</last-modified>
+        <last-modified xmlns="http://netconfcentral.org/ns/yuma-time-filter">2000-01-01T03:35:44Z</last-modified>
       </datastore>
       <datastore>
         <name>startup</name>
-        <last-modified xmlns="http://netconfcentral.org/ns/yuma-time-filter">2000-01-01T00:01:35Z</last-modified>
+        <last-modified xmlns="http://netconfcentral.org/ns/yuma-time-filter">2000-01-01T00:01:36Z</last-modified>
       </datastore>
     </datastores>
     <schemas>
@@ -4645,18 +4695,18 @@
         <transport xmlns:yid="http://yumaworks.com/ns/yumaworks-ids">yid:netconf-aflocal</transport>
         <username>root</username>
         <source-host>127.0.0.1</source-host>
-        <login-time>2000-01-01T00:01:40Z</login-time>
+        <login-time>2000-01-01T00:01:41Z</login-time>
         <in-rpcs>0</in-rpcs>
         <in-bad-rpcs>0</in-bad-rpcs>
         <out-rpc-errors>0</out-rpc-errors>
         <out-notifications>0</out-notifications>
       </session>
       <session>
-        <session-id>192</session-id>
+        <session-id>97</session-id>
         <transport xmlns:ncm="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">ncm:netconf-ssh</transport>
         <username>su</username>
         <source-host>192.168.2.118</source-host>
-        <login-time>2000-01-14T01:49:51Z</login-time>
+        <login-time>2000-01-01T03:35:56Z</login-time>
         <in-rpcs>0</in-rpcs>
         <in-bad-rpcs>0</in-bad-rpcs>
         <out-rpc-errors>0</out-rpc-errors>
@@ -4664,13 +4714,13 @@
       </session>
     </sessions>
     <statistics>
-      <netconf-start-time>2000-01-01T00:01:36Z</netconf-start-time>
+      <netconf-start-time>2000-01-01T00:01:37Z</netconf-start-time>
       <in-bad-hellos>0</in-bad-hellos>
-      <in-sessions>191</in-sessions>
+      <in-sessions>96</in-sessions>
       <dropped-sessions>0</dropped-sessions>
-      <in-rpcs>396</in-rpcs>
-      <in-bad-rpcs>10</in-bad-rpcs>
-      <out-rpc-errors>10</out-rpc-errors>
+      <in-rpcs>692</in-rpcs>
+      <in-bad-rpcs>5</in-bad-rpcs>
+      <out-rpc-errors>5</out-rpc-errors>
       <out-notifications>0</out-notifications>
     </statistics>
     <backup-files xmlns="http://yumaworks.com/ns/yumaworks-system"/>
@@ -4782,7 +4832,9 @@
     </ciena-qos-flows>
   </qos-flows>
   <removable-storage-state xmlns="http://www.ciena.com/ns/yang/ciena-removable-storage"/>
-  <reserved-vlans xmlns="http://www.ciena.com/ns/yang/ciena-reserved-vlan-sds"/>
+  <reserved-vlans xmlns="http://www.ciena.com/ns/yang/ciena-reserved-vlan-sds">
+    <vlan-id>4094</vlan-id>
+  </reserved-vlans>
   <rmon xmlns="http://www.ciena.com/ns/yang/ciena-rmon">
     <transfer>
       <enabled>false</enabled>
@@ -7290,19 +7342,19 @@
     <authentication xmlns="http://www.ciena.com/ns/yang/ciena-users">
       <user>
         <name>admin</name>
-        <current-secret>$6$u9nEowNmA74zFoeS$ohvjK.PYm354aaeeUDsaJ23BKhDVWO27y.twHh9W3XO9S2kEbfN1uAutvFCUOHlgYSvHrTQGs0ML2ZM9JaHgp0</current-secret>
+        <current-secret>$6$ZcaBBVKgjvO3Od53$BJ1H14aZLJEAsafspGve.u0soQTgGmcU1HVe4.u9.UoUhesYb2/gVWWAQkDAOwVREinNb1JzCQkvCNA7EwzC51</current-secret>
         <access-level>admin</access-level>
         <max-session-limit>0</max-session-limit>
       </user>
       <user>
         <name>gss</name>
-        <current-secret>$6$F93gsaUKvD3Ab54K$zZ5nRBfMZGc.eLvPzi6hMLDQa0PUZ.r4HVpTQvgsnkI9ueOotkyFsDZh/LAATpoJ3/5lXROHgdq9TXTt3wY08/</current-secret>
+        <current-secret>$6$Dc6sVdfX3Oxl/b.T$0NrGyMTvtV85Hysfvgw/Ba3gMxo7cGYB4gv//s4dV7LpS4A7TrZPq1eKyPwW9avWDGX3jvAC4nV4UDc7iKG3H.</current-secret>
         <access-level>diag</access-level>
         <max-session-limit>0</max-session-limit>
       </user>
       <user>
         <name>su</name>
-        <current-secret>$6$OUggpVj8azYq8A5J$O1xbUYNGfCwFRa3EO7ohf6wvcm2FFl6w/0SG1O5f/gBG2Mt/p/r1lzAwSPdp/aJYGqXJLD2wW8VeM50rlkegt0</current-secret>
+        <current-secret>$6$md5xmzl0ROLg8qzo$/6fD5ZXlKD9lNx9E70JOBRWU8Xak71YC5Q.qo9dGs6ocB63Vh/7i5KBvppq6hc3ycpccIOnsBypwfKBdDkxrt1</current-secret>
         <access-level>super</access-level>
         <max-session-limit>0</max-session-limit>
       </user>
@@ -7364,8 +7416,8 @@
   </system>
   <system xmlns="http://netconfcentral.org/ns/yuma-system">
     <sysName>localhost</sysName>
-    <sysCurrentDateTime>2000-01-14T01:49:59Z</sysCurrentDateTime>
-    <sysBootDateTime>2000-01-01T00:01:36Z</sysBootDateTime>
+    <sysCurrentDateTime>2000-01-01T03:36:05Z</sysCurrentDateTime>
+    <sysBootDateTime>2000-01-01T00:01:37Z</sysBootDateTime>
     <sysLogLevel>info</sysLogLevel>
     <sysNetconfServerId>netconfd-pro -2018-07-30.18.16</sysNetconfServerId>
     <sysNetconfStartupSource>no-startup</sysNetconfStartupSource>
@@ -7543,8 +7595,8 @@
   <system-state xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
     <platform/>
     <clock>
-      <current-datetime>2000-01-14T01:49:59+00:00</current-datetime>
-      <boot-datetime>2000-01-01T00:01:20+00:00</boot-datetime>
+      <current-datetime>2000-01-01T03:36:05+00:00</current-datetime>
+      <boot-datetime>2000-01-01T00:01:21+00:00</boot-datetime>
     </clock>
     <server xmlns="http://www.ciena.com/ns/yang/ciena-system"/>
     <dns-client xmlns="http://www.ciena.com/ns/yang/ciena-dns-client">
@@ -7600,7 +7652,7 @@
     </chassis>
     <configuration xmlns="http://www.ciena.com/ns/yang/ciena-configuration-management">
       <status>idle</status>
-      <dirty>false</dirty>
+      <dirty>true</dirty>
       <config-files>startup-config</config-files>
       <check-status>
         <checked-file>-</checked-file>
