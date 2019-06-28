@@ -1,13 +1,13 @@
 ---
 
-- name: Create VC Flow Domain
+- name: Get Flow Domain information
   hosts: "3926"
   connection: netconf
   gather_facts: false
   tasks:
       - name: "TASK1: Get filtered output from switch"
         netconf_get:
-          filter: <classifiers></classifiers>
+          filter: <sfs></sfs>
         register: result
       - name: "TASK2: Format XML for easy viewing"
         xml:
@@ -23,5 +23,5 @@
       - name: "TASK4: Write XML to disk"
         copy:
             content: "{{ pretty_config.xmlstring }}"
-            dest: "outputs/{{inventory_hostname}}_classifiers_netconf.xml"
+            dest: "outputs/{{inventory_hostname}}_sfs_netconf.xml"
 

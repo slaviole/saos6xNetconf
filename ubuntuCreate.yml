@@ -1,0 +1,25 @@
+---
+
+- name: Create VNF
+  hosts: "3926"
+  vars:
+      stag: 200
+      vnfName: "ubuntu"
+      numCpu: 2
+      mem: 4096
+      netIfs:
+          - ifname: "mgmt-ens4"
+            iftype: "default" 
+            interface: "default"
+          - ifname: "lan-ens5"
+            iftype: "vhost" 
+            interface: "vnet-0"
+          - ifname: "wan-ens6"
+            iftype: "vhost" 
+            interface: "vnet-1"
+  connection: netconf
+  gather_facts: false
+  tasks:
+      - name: "Task1: Create VNF"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/sfsCreate.j2') }}"

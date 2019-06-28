@@ -1,7 +1,7 @@
 ---
 
 - name: "Get all XML from node"
-  hosts: "3903x_4"
+  hosts: "3926"
   connection: netconf
   gather_facts: false
   tasks:

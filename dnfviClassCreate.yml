@@ -1,0 +1,30 @@
+---
+
+- name: Create VNF
+  hosts: "3926"
+  vars:
+      vnfName: "ubuntu"
+      numCpu: 2
+      mem: 4096
+      netIfs:
+          - ifname: "mgmt-ens4"
+            iftype: "default" 
+            interface: "default"
+          - ifname: "lan-ens5"
+            iftype: "vhost" 
+            interface: "vnet-0"
+          - ifname: "wan-ens6"
+            iftype: "vhost" 
+            interface: "vnet-1"
+      createUntaggedClassifier: true
+      taggedClassifiers:
+          - 100
+          - 200
+          - 300
+
+  connection: netconf
+  gather_facts: false
+  tasks:
+      - name: 'Task2: Create Classifier'
+        netconf_config:
+            content: "{{ lookup('template', 'templates/dnfviClassCreate.j2') }}"

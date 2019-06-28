@@ -6,3 +6,4 @@
 #                3903x_4: ansible_ssh_host=192.168.2.4
 
 3903x_4 ansible_ssh_host=192.168.2.4 ansible_user=su ansible_password=wwp ansible_python_interpreter=/home/serge/Downloads/DevProjects/cienaNetconf/venv/bin/python
+3926 ansible_ssh_host=192.168.2.27 ansible_user=user ansible_password=ciena123 ansible_python_interpreter=/home/serge/Downloads/DevProjects/cienaNetconf/venv/bin/python

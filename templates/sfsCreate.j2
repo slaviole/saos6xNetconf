@@ -1,0 +1,25 @@
+<config>  
+  <sfs xmlns="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-sf">
+    <sf operation="replace">
+    <sf-name>{{ vnfName }}</sf-name>
+      <sfo>
+        <sfo-metadata>
+            <cpus>{{ numCpu }}</cpus>
+            <memory>{{ mem }}</memory>
+        </sfo-metadata>
+        {% for netIf in netIfs %}
+            <network-interface>
+              <name>{{ netIf.ifname }}</name>
+              <network-type>{{ netIf.iftype }}</network-type>
+              {% if netIf.iftype != "default" %}
+                <logical-port>{{ netIf.interface }}</logical-port>
+              {% endif %}
+            </network-interface>
+        {% endfor %}
+        <image-mgmt>
+            <image-ref>{{ vnfName }}</image-ref>
+        </image-mgmt>
+      </sfo>
+    </sf>
+  </sfs>
+</config>

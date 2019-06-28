@@ -7,6 +7,7 @@
       ctag: 20
       uniPort: 2
       nniPort: 3
+      provisionCfm: true
       mepid: 2
   connection: netconf
   gather_facts: false
@@ -35,6 +36,7 @@
       - name: "Task8: Service CFM provisioning"
         netconf_config:
             content: "{{ lookup('template', 'templates/serviceCfm.j2') }}"
+        when: provisionCfm
       - name: "Task9: Enable Global CFM Service"
         netconf_config:
             content: "{{ lookup('template', 'templates/globalCfmEnable.j2') }}"
