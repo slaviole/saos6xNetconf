@@ -36,31 +36,31 @@
       <sf-state>
         <oper-state>Running</oper-state>
         <num-cpus>2</num-cpus>
-        <cpu-time>63210000000</cpu-time>
-        <cpu-user-time>2090000000</cpu-user-time>
-        <cpu-system-time>8110000000</cpu-system-time>
+        <cpu-time>1122560000000</cpu-time>
+        <cpu-user-time>14720000000</cpu-user-time>
+        <cpu-system-time>102240000000</cpu-system-time>
         <mem-allocated>4096</mem-allocated>
         <mem-resident>4294967296</mem-resident>
         <mem-swap-in>0</mem-swap-in>
         <mem-swap-out>0</mem-swap-out>
-        <mem-major-fault>786432</mem-major-fault>
-        <mem-minor-fault>444335104</mem-minor-fault>
-        <mem-available>4143304704</mem-available>
-        <mem-unused>3729346560</mem-unused>
+        <mem-major-fault>936960</mem-major-fault>
+        <mem-minor-fault>3898326016</mem-minor-fault>
+        <mem-available>4143513600</mem-available>
+        <mem-unused>3034890240</mem-unused>
         <console>
           <vnc-port>5900</vnc-port>
         </console>
         <interfaces>
           <name>mgmt</name>
           <network-type>default</network-type>
-          <mac-address>52:54:00:a7:b0:fd</mac-address>
+          <mac-address>52:54:00:fe:ef:2b</mac-address>
           <stats>
-            <rxBytes>4368028</rxBytes>
-            <rxPkts>8394</rxPkts>
+            <rxBytes>139645762</rxBytes>
+            <rxPkts>234685</rxPkts>
             <rxDrops>0</rxDrops>
             <rxErrors>0</rxErrors>
-            <txBytes>86991</txBytes>
-            <txPkts>1108</txPkts>
+            <txBytes>2967014</txBytes>
+            <txPkts>36111</txPkts>
             <txDrops>0</txDrops>
             <txErrors>0</txErrors>
           </stats>
@@ -68,13 +68,13 @@
         <interfaces>
           <name>lan</name>
           <network-type>vhost</network-type>
-          <mac-address>52:54:00:69:31:af</mac-address>
+          <mac-address>52:54:00:03:48:0e</mac-address>
           <stats/>
         </interfaces>
         <interfaces>
           <name>wan</name>
           <network-type>vhost</network-type>
-          <mac-address>52:54:00:1a:a7:a9</mac-address>
+          <mac-address>52:54:00:22:6c:ef</mac-address>
           <stats/>
         </interfaces>
         <snapshots/>

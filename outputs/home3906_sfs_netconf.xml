@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx">
+  <sffs xmlns="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-sfc">
+    <sff>
+      <sff-name>FD-LAN</sff-name>
+      <sff-mode>vpws</sff-mode>
+      <interface>
+        <name>FD-LAN-FP-vnet0</name>
+        <logical-port>vnet-0</logical-port>
+        <classifier-list>Untagged</classifier-list>
+        <stats-enabled>false</stats-enabled>
+        <statistics/>
+      </interface>
+      <interface>
+        <name>FD-LAN-FP-1</name>
+        <logical-port>1</logical-port>
+        <classifier-list>Untagged</classifier-list>
+        <stats-enabled>false</stats-enabled>
+        <statistics/>
+      </interface>
+    </sff>
+  </sffs>
+</data>

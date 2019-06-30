@@ -1,0 +1,76 @@
+---
+
+- name: "Create Single VNF"
+  hosts: "home3906"
+  vars:
+      vnfName: "vyos"
+      numCpu: 2
+      mem: 4096
+      netIfs:
+          - ifname: "mgmt-eth0"
+            iftype: "default" 
+            interface: "default"
+          - ifname: "lan-eth1"
+            iftype: "vhost" 
+            interface: "vnet-0"
+          - ifname: "wan-eth2"
+            iftype: "vhost" 
+            interface: "vnet-1"
+      image_path: "sftp://192.168.2.3/home/pi/vyos.qcow2"
+      image_checksum: "sftp://192.168.2.3/home/pi/vyos.md5"
+      image_size: 365
+      image_max_size: 2000
+      sftp_username: "pi"
+      sftp_password: "Ciena123!"
+      createUntaggedClassifier: true
+      taggedClassifiers:
+          - 100
+          - 200
+          - 300
+      fds:
+          - fdname: "FD-LAN"
+            fps:
+                - fpname: "FD-LAN-FP-vnet0"
+                  logPort: "vnet-0"
+                  classifier: "Untagged"
+                - fpname: "FD-LAN-FP-1"
+                  logPort: "1"
+                  classifier: "Untagged"
+          - fdname: "FD-WAN"
+            fps:
+                - fpname: "FD-WAN-FP-vnet1"
+                  logPort: "vnet-1"
+                  classifier: "Untagged"
+                - fpname: "FD-WAN-FP-2"
+                  logPort: "2"
+                  classifer: "Untagged"
+  connection: netconf
+  gather_facts: false
+  tasks:
+      - name: "Define Image Download"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/downloadImage.j2') }}"    
+        ignore_errors: True
+      - name: "Download Image"
+        netconf_rpc:
+            xmlns: "urn:ciena:params:xml:ns:yang:ciena-pn::ciena-file-mgmt"
+            rpc: "file-action"
+            content:
+                file-name: 'vyos'
+                action: 'download'
+      - name: "Pause for 30 seconds to allow image to download"
+        pause:
+            seconds: 30
+      - name: "Create Classifiers"
+        netconf_config:
+             content: "{{ lookup('template', 'templates/dnfviClassCreate.j2') }}"           
+        ignore_errors: True
+      - name: "Define SFS"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/sfsCreateTest.j2') }}"
+      - name: "Start SFS"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/startSfs.j2') }}"
+      - name: "Create SFS(i.e. Service Chain)"
+        netconf_config:
+            content: "{{ lookup('template', 'templates/createSffs.j2') }}"

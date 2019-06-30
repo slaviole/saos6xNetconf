@@ -7,7 +7,7 @@
   tasks:
       - name: "TASK1: Get filtered output from switch"
         netconf_get:
-          filter: <sfs></sfs>
+          filter: <sffs></sffs>
         register: result
       - name: "TASK2: Format XML for easy viewing"
         xml:

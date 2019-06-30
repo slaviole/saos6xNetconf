@@ -1,13 +1,13 @@
 ---
 
 - name: Get Flow Domain information
-  hosts: "home3906"
+  hosts: "3926"
   connection: netconf
   gather_facts: false
   tasks:
       - name: "TASK1: Get filtered output from switch"
         netconf_get:
-          filter: <sfs></sfs>
+          filter: <file-action></file-action>
         register: result
       - name: "TASK2: Format XML for easy viewing"
         xml:
@@ -23,5 +23,5 @@
       - name: "TASK4: Write XML to disk"
         copy:
             content: "{{ pretty_config.xmlstring }}"
-            dest: "outputs/{{inventory_hostname}}_sfs_netconf.xml"
+            dest: "outputs/{{inventory_hostname}}_files_netconf.xml"
 

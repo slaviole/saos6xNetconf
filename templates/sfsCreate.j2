@@ -7,7 +7,10 @@
             <cpus>{{ numCpu }}</cpus>
             <memory>{{ mem }}</memory>
         </sfo-metadata>
-        {% for netIf in netIfs %}
+        <image-mgmt>
+            <image-ref> {{ vnfName }} </image-ref>
+        </image-mgmt>
+       {% for netIf in netIfs %}
             <network-interface>
               <name>{{ netIf.ifname }}</name>
               <network-type>{{ netIf.iftype }}</network-type>
@@ -16,10 +19,10 @@
               {% endif %}
             </network-interface>
         {% endfor %}
-        <image-mgmt>
-            <image-ref>{{ vnfName }}</image-ref>
-        </image-mgmt>
-      </sfo>
-    </sf>
+     </sfo>
+     <sf-operation>
+         <state>start</state>
+     </sf-operation>
+  </sf>
   </sfs>
 </config>

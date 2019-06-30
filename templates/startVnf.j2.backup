@@ -1,0 +1,8 @@
+<rpc message-id="ciena" trace-id="ciena" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">   
+<files>
+  <file-action xmlns="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-file-mgmt">
+    <file-name>{{ vnfName }}</file-name>
+    <action>download</action>
+  </file-action>
+</files>
+</rpc>
