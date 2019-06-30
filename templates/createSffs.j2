@@ -1,17 +1,17 @@
 <config>  
   <sffs xmlns="urn:ciena:params:xml:ns:yang:ciena-pn::ciena-sfc">
+    {% for fd in fds %} 
     <sff>
-      {% for fd in fds %} 
       <sff-name>{{ fd.fdname }}</sff-name>
       <sff-mode>vpws</sff-mode>
-      {% for fp in fps %}
+      {% for fp in fd.fps %}
       <interface>
         <name>{{ fp.fpname }}</name>
         <logical-port>{{ fp.logPort }}</logical-port>
         <classifier-list>{{ fp.classifier }}</classifier-list>
       </interface>
       {% endfor %}
-     {% endfor %}
     </sff>
+   {% endfor %}
   </sffs>
 </config>

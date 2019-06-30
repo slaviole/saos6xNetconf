@@ -34,7 +34,7 @@
                   logPort: "vnet-0"
                   classifier: "Untagged"
                 - fpname: "FD-LAN-FP-1"
-                  logPort: "1"
+                  logPort: 1
                   classifier: "Untagged"
           - fdname: "FD-WAN"
             fps:
@@ -42,8 +42,8 @@
                   logPort: "vnet-1"
                   classifier: "Untagged"
                 - fpname: "FD-WAN-FP-2"
-                  logPort: "2"
-                  classifer: "Untagged"
+                  logPort: 2
+                  classifier: "Untagged"
   connection: netconf
   gather_facts: false
   tasks:
